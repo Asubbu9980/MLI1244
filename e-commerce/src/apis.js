@@ -6,9 +6,10 @@ export const APIS = {
     //Products
     PRODUCTS: environment.api+ "/products", //GET
     ADD_PRODUCTS: environment.api+ "/products", //POST
-    DELETE_PRODUCT:(id)=> `${environment.api}/products/${id}`, //DELETE
+    DELETE_PRODUCT:(id)=> `${environment.api}/products/${id}`, //DELETE   
     EDIT_PRODUCT:(id)=> `${environment.api}/products/${id}`, //PUT
     GET_CART_PRODUCTS:`${environment.api}/products/cart`, //GET
+
    
      
     //Cart
@@ -19,3 +20,7 @@ export const APIS = {
    
 
 }
+
+
+
+// used arrow function, no need to return function

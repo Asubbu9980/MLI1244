@@ -9,7 +9,7 @@ import { APIS } from "../apis";
 import ConfirmModel from "./ConfirmModel";
 import { toast } from "react-toastify";
 
-function Cart(props) {
+function Cart(props) {   // passing props to get properties from cart (to reload the component)
     const [data, setData] = useState([]);
     const [verify, setVerify] = useState(false);
     const [productId, setProductId] = useState("");
@@ -19,10 +19,10 @@ function Cart(props) {
     }, []);
 
     function getProducts() {
-        axios.get(APIS.CART_ITEMS)
+        axios.get(APIS.CART_ITEMS)   // getting records which are saved in the cart.
             .then((response) => {
                 let productIds = response.data.map(res => res.productId)
-                axios.post(APIS.GET_CART_PRODUCTS, {productIds})
+                axios.post(APIS.GET_CART_PRODUCTS, {productIds})  // getting all products from the products which are matched to the cart.
                     .then((response) => {
                         setData(response.data);
                     })
@@ -52,13 +52,13 @@ function Cart(props) {
 
     function onDelete() {
         axios
-            .delete(APIS.DELETE_CART(productId))
+            .delete(APIS.DELETE_CART(productId))   // deleting the cart items from the cart.
             .then((response) => {
                 console.log("Data deleted from the database:", response.data);
                 toast.success("Item Successfully removed from the cart.", {theme: 'colored'})
                 getProducts();
                 handleClose();
-                props.setReloadNavbar(Math.random());
+                props.setReloadNavbar(Math.random()); // after releoading the component cart will be updated.
             })
             .catch((error) => {
                 console.error("Error deleting data from the database:", error);

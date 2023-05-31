@@ -29,12 +29,12 @@ const Product = (props) => {
     total_qty: "",
     image: "",
   }
-  const [product, setProduct] = useState(defaultValues);
+  const [product, setProduct] = useState(defaultValues);  // getting the products by id
   useEffect(() => {
     if (!id) {
       return;
     }
-    axios("http://localhost:3001/products/" + id)
+    axios("http://localhost:3001/products/" + id)   // id is there than update res to setproduct for famrik nd opetations
       .then((res) => {
         console.log(res.data)
         const temp = { ...defaultValues, ...res.data }
@@ -56,22 +56,25 @@ const Product = (props) => {
         .min(3, "Must be  3 characters or more")
         .max(150, "Must be 15 characters or less")
         .required("Required"),
-      price: Yup.string()
-        .min(3, "Must be  3 characters or more")
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      available_qty: Yup.string()
-        .min(1, "Must be  3 characters or more")
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      total_qty: Yup.string()
-        .min(1, "Must be  3 characters or more")
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      image: Yup.string()
-        .min(3, "Must be  3 characters or more")
-        .max(500, "Must be 500 characters or less")
-        .required("Required"),
+        price: Yup.number()
+      .typeError("Price must be a number")
+      .min(0, "Price cannot be negative")
+      .required("Required"),
+    available_qty: Yup.number()
+      .typeError("Available quantity must be a number")
+      .min(0, "Available quantity cannot be negative")
+      .max(Yup.ref("total_qty"), "Available quantity cannot exceed total quantity")
+      .required("Required"),
+    total_qty: Yup.number()
+      .typeError("Total quantity must be a number")
+      .min(0, "Total quantity cannot be negative")
+      .required("Required"),
+        image: Yup.string()
+        .matches(
+          /^(https?:\/\/)?(www\.)?([^\s.]+\.\S{2,}|localhost[:?\d]*)\S*$/,
+          'Please enter a valid URL'
+        )
+        .required('Image URL is required'),
     }),
 
     onSubmit: (values) => {

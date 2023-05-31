@@ -10,7 +10,7 @@ import { APIS } from "../apis";
 
 function PrimaryNav() {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState("");
 
   useEffect(() => {
     fetchCartItems();
@@ -18,7 +18,7 @@ function PrimaryNav() {
 
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get(APIS.GET_CART_COUNT);
+      const response = await axios.get(APIS.GET_CART_COUNT);  // getting cart count from cart
       const count = response.data;
       setSelected(count);
     } catch (error) {
@@ -28,7 +28,7 @@ function PrimaryNav() {
 
   return (
     <>
-      <Navbar  expand="lg" fixed="top" className='nav-bg'>
+      <Navbar  expand="lg" fixed="top" className='nav-bg shadow-lg' >
         <Container>
           <Brand />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

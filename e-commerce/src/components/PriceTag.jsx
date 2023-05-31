@@ -1,6 +1,6 @@
 function PriceTag(props) {
   function formatePrice(price) {
-    return parseFloat(price).toFixed(2);
+    return parseFloat(price).toFixed(2);  // converting the number with round figure
   }
   return (
     <div className="d-flex align-items-center">

@@ -17,7 +17,7 @@ function CartItem(props) {
           <div className='btn-group w-100'>
             <button
               className="btn btn-danger mt-2"
-              onClick={props.onDelete}
+              onClick={props.onDelete}     // on delete function will perform action from cart
             >
               <i className="bi bi-trash-fill fs-5 d-flex justify-content-center"></i>
             </button>

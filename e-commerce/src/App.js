@@ -13,15 +13,15 @@ import { ToastContainer } from 'react-toastify';
 
 function App() {
   
- const[reloadNavbar, setReloadNavbar] = useState(Math.random())
+ const[reloadNavbar, setReloadNavbar] = useState(Math.random())  
 
   return (
     <>
       <ToastContainer />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PrimaryNav key={reloadNavbar}/>}>
-            <Route index element={<Home  setReloadNavbar={setReloadNavbar}/>} />
+          <Route path="/" element={<PrimaryNav key={reloadNavbar}/>}>   {/* every element have  a unique key, whenever key value chnaged on that time element will be rendered */}              
+           <Route index element={<Home  setReloadNavbar={setReloadNavbar}/>} />   
             <Route path="product" element={<Product/>} />
             <Route path="cart" element={<Cart setReloadNavbar={setReloadNavbar}/>} />
             <Route path="products-details" element={<ProductDetails />} />

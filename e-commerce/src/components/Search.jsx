@@ -12,7 +12,7 @@ function onSearch(event){
     return (
      <>
      <Container className='mt-3'> 
-     <InputGroup className="mb-3 search-bar">
+     <InputGroup className="mb-3 search-bar shadow">
         <Form.Control
           placeholder="search"
           onKeyUp={(event)=>onSearch(event)}

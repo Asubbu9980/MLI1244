@@ -9,13 +9,14 @@ import { toast } from 'react-toastify';
 function ProductCard(props) {
   
   const [selected, setSelected] = useState(props.item.selected)
+  // const [buttonText,setButtonText]=useState("Add to Cart")
  
   function oncartclick() {
     setSelected(!selected);
   
-    axios.post(APIS.ADD_CART, { productId: props.item._id, prodcutTitle: props.item.title })
+    axios.post(APIS.ADD_CART, { productId: props.item._id, prodcutTitle: props.item.title })  // to add the product into cart and it will be saved in db
       .then(response => {
-        props.setReloadNavbar(Math.random());
+        props.setReloadNavbar(Math.random()); // cart will be updated
         toast.success("Item added into the cart successfully.", {theme: 'colored'})
         console.log('Data saved to the database:', response.data);
       })
@@ -23,6 +24,7 @@ function ProductCard(props) {
         toast.error(error.response.data, {theme: 'colored'})
         console.error('Error saving data to the database:', error);
       });
+      // setButtonText("Added To Cart")
   }
   
 
@@ -50,7 +52,7 @@ function ProductCard(props) {
                 <button
                   className=" btn btn-success btn-md w-75"
                   onClick={oncartclick}
-                ><span className="me-2">Add to Cart</span>
+                ><span className="me-2">Add to cart</span>
                   <i className="bi bi-cart-fill"></i>
                 </button>
           </div>
